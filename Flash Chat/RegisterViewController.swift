@@ -40,6 +40,10 @@ class RegisterViewController: UIViewController {
             } else {
                 //success
                 print("Registration Successful")
+                
+                //navigate to chat view controller .self is due to the closure 
+                self.performSegue(withIdentifier: "goToChat", sender: self)
+                
             }
             
         }
