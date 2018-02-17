@@ -110,6 +110,7 @@ class ChatViewController: UIViewController {
         //Do runs on success
         do {
         try Auth.auth().signOut()
+          navigationController?.popToRootViewController(animated: true)
         }
         // Catch will run on error
         catch {
