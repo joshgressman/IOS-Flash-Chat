@@ -31,9 +31,13 @@ class LogInViewController: UIViewController {
         Auth.auth().signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (user, error) in
            
             if error != nil {
+                
                 print("There was an error logging in")
+                
             } else {
+                
                 print("Loggin Successful!!")
+                
                 self.performSegue(withIdentifier: "goToChat", sender: self)
             }
         }
