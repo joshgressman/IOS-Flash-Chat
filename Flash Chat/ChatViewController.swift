@@ -94,9 +94,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     //TODO: Declare textFieldDidBeginEditing here:
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-         heightConstraint.constant = 308
-        //called if something changes to rebuild the view
-        view.layoutIfNeeded()
+        
+        //Animation for view changes for the keyboard
+        UIView.animate(withDuration: 0.5){
+            self.heightConstraint.constant = 308
+            //called if something changes to rebuild the view
+            self.view.layoutIfNeeded()
+        }
     }
     
     
