@@ -139,6 +139,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
        //creates a new child database for messages
        let messageDB = Database.database().reference().child("Messages")
         
+       let messageDictionary = ["Sender": Auth.auth().currentUser?.email, "MessageBody": messageTextfield.text]
+   
+       //Creates custom random ID
+       messageDB.childByAutoId().setValue(messageDictionary)
     }
     
     //TODO: Create the retrieveMessages method here:
