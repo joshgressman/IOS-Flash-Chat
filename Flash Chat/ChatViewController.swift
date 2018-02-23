@@ -131,6 +131,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         //TODO: Send the message to Firebase and save it in our database
         
+       messageTextfield.endEditing(true)
+        
+       messageTextfield.isEnabled = false
+       sendButton.isEnabled = false
+    
+       //creates a new child database for messages
+       let messageDB = Database.database().reference().child("Messages")
         
     }
     
