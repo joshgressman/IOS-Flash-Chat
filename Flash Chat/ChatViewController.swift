@@ -61,9 +61,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell
    
-        let messageArray = ["Fisrt Message", "Second Message", "Third Message"]
-        
-        cell.messageBody.text = messageArray[indexPath.row]
+        cell.messageBody.text = messageArray[indexPath.row].messageBody
+        cell.senderUsername.text = messageArray[indexPath.row].sender
+        cell.avatarImageView.image = UIImage(named: "egg")
         
         return cell
         
@@ -178,7 +178,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         //Push message object to the message array
         self.messageArray.append(message)
-            
+        
+        self.configureTableView()
+        //Reloads the view when data is uploaded in the DB
+        self.messageTableView.reloadData()
         }
     }
 
