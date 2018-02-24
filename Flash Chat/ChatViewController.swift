@@ -16,7 +16,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
    
     
     // Declare instance variables here
-
+    var messageArray : [Message] = [Message]()
     
     // We've pre-linked the IBOutlets
     @IBOutlet var heightConstraint: NSLayoutConstraint!
@@ -46,6 +46,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMessageCell")
         
         configureTableView()
+        
+        retrieveMessages()
 
     ///////////////////////////////////////////
     
@@ -159,7 +161,19 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //TODO: Create the retrieveMessages method here:
     
-    
+    func retrieveMessages() {
+        
+        let messageDB = Database.database().reference().child("Messages")
+        //observes when there is a change in the DB messages, snapshot is the returned data
+        messageDB.observe(.childAdded) { (snapshot) in
+        let snapshotValue = snapshot.value as! Dictionary<String,String>
+        
+        let text = snapshotValue["MessageBody"]!
+        let sender = snapshotValue["Sender"]!
+            
+        print(text, sender)
+        }
+    }
 
     
     
